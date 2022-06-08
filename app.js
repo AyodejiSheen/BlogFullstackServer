@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express();  //an instance of express.
 const cors = require('cors'); //to allow access from the frontend
+require("dotenv").config(); // to switch to web hosting port or localhost port
 
 
 
@@ -45,9 +46,12 @@ app.use("/likes", likesRouters) //for like related routes
 db.sequelize.sync().then(() => {
 
     //to start listening to request at a port
-    app.listen(3001, () => {
+    app.listen(process.env.PORT || 3001, () => {
     console.log("the server in running")
     })
 
+})
+.catch((err) => {
+    console.log(err);
 })
 

@@ -5,7 +5,7 @@
 const express = require('express')
 const router = express.Router()
 const { Users } = require("../models"); //to create an instance of the database table users needed here
-const bcrypt = require('bcrypt') // a library to hash passwords
+const bcrypt = require('bcryptjs') // a library to hash passwords
 
 //importing JWT library
 const { sign } = require('jsonwebtoken');
