@@ -149,7 +149,8 @@ router.post("/resetpassword", async (req, res) => {
     //if the user is found create a link and send to them to reset there password
     if (finduser) {
         const token = sign(payload, "main secret", { expiresIn: '10m' });
-        const link = `http://localhost:3000/reset-password/${finduser.id}/${token}`;
+        const link = `https://blogayfullstack.netlify.app/reset-password/${finduser.id}/${token}`;
+        // const link = `http://localhost:3000/reset-password/${finduser.id}/${token}`;
 
         //to send link to the user email address
         let transporter = nodemailer.createTransport({
