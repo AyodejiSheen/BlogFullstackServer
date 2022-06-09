@@ -140,14 +140,16 @@ router.post("/resetpassword", async (req, res) => {
     const { email } = req.body;
     let finduser = await Users.findOne({ where: { email: email } });
     console.log(finduser);
-    
-    const payload = {
-        email: finduser.email,
-        id: finduser.id
-    }
+
 
     //if the user is found create a link and send to them to reset there password
     if (finduser) {
+        
+        const payload = {
+            email: finduser.email,
+            id: finduser.id
+        }
+
         const token = sign(payload, "main secret", { expiresIn: '10m' });
         const link = `https://blogayfullstack.netlify.app/reset-password/${finduser.id}/${token}`;
         // const link = `http://localhost:3000/reset-password/${finduser.id}/${token}`;
