@@ -83,8 +83,8 @@ router.post("/login", async (req, res) => {
                 res.json({ error: "Wrong password and username combo" });  //if the password is wrong compare to the user password.... it will continue automatically if its matched
             } else {
                 //to generate Token
-                const accessToken = sign({ username: user.username, id: user.id }, //the details you want to keep secret as the JWT... secret can be any string secretive
-                    "secret", {expiresIn: "60m"});
+                const accessToken = sign({ username: user.username, id: user.id }, "secret", {expiresIn: '10m'});//the details you want to keep secret as the JWT... secret can be any string secretive
+                    
 
                 res.json({ token: accessToken, username: user.username, id: user.id }); //then you send the JWT token to the frontend as response when detail is verify
             }

@@ -17,6 +17,8 @@ const ValidateToken = (req, res, next) => {
             req.user = validToken // the req.user is a variable you collect all the details of the token which is in validToken (validToken is an object) to have access to it 
                                     // the req.user is always available when using the ValidateToken middledware in an endpoint
             return next(); //if its valid then carry on with the next function
+        }else{
+            res.json({error:"invalid token"})
         }
     }catch(err){
         return res.json({error:err}) //if not valid return error
