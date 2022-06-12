@@ -83,9 +83,8 @@ router.post("/login", async (req, res) => {
                 res.json({ error: "Wrong password and username combo" });  //if the password is wrong compare to the user password.... it will continue automatically if its matched
             } else {
                 //to generate Token
-                const accessToken = sign(
-                    { username: user.username, id: user.id }, //the details you want to keep secret as the JWT... secret can be any string secretive
-                    "secret");
+                const accessToken = sign({ username: user.username, id: user.id }, //the details you want to keep secret as the JWT... secret can be any string secretive
+                    "secret", {expiresIn: "60m"});
 
                 res.json({ token: accessToken, username: user.username, id: user.id }); //then you send the JWT token to the frontend as response when detail is verify
             }
@@ -173,13 +172,14 @@ router.post("/resetpassword", async (req, res) => {
           transporter.sendMail(mailOptions, function(error, info){
             if (error) {
               console.log(error);
+              res.json("server error")
             } else {
               console.log('Email sent: ' + info.response);
+              res.json("Check your email for the link to reset your password")
             }
           });
 
           //email sending ends
-        res.json("Check your email for the link to reset your password")
 
     } else {
         res.json("user not found")
