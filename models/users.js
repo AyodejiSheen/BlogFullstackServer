@@ -44,9 +44,6 @@ module.exports = (sequelize, DataTypes) => {
             //adding properties
             onDelete: "cascade" //i.e on delete of a post all the comments under it will also be deleted
         });
-
-
-
     }
 
 

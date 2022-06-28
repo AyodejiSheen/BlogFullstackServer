@@ -28,6 +28,8 @@ router.get("/", ValidateToken, async (req, res) => {
     res.json({ postList: postList, likedPost: likedPost })
 })
 
+
+
 router.get("/notlogged", async (req, res) => {
     //to get all the posts from the database post table
     //to be able to display the number of like for each post we join the likes table to the post table and fetch the two out using the include 

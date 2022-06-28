@@ -94,6 +94,8 @@ router.post("/login", async (req, res) => {
 });
 
 
+
+
 //to make sure there is security and token is valid
 router.get("/auth", ValidateToken, (req, res) => {
     res.json(req.user)
